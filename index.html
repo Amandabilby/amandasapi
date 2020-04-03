@@ -135,11 +135,22 @@
         <input type="submit" />
     </form>
 
-
+<hr>
     <h2>Lägg till en produkt i varukorg:</h2>
     <form class="form">
         <input type="text" name="url" placeholder="" value="http://192.168.64.2/amandasapi/cart/addToCart.php" /><br />
-        <input type="text" name="Id" placeholder="product_id" /><br />
+        <input type="text" name="Id" placeholder="Id" /><br />
+        <input type="text" name="token" placeholder="token" /><br />
+        GET: <input type="radio" name="method" value="get" checked /> POST: <input type="radio" name="method"
+            value="post" /><br />
+        <input type="submit" />
+    </form>
+<hr>
+
+    <h2>Visa alla produkter i din varukorg:</h2>
+
+    <form class="form">
+        <input type="text" name="url" placeholder="http://" value="http://192.168.64.2/amandasapi/cart/getAllCarts.php" /><br />
         <input type="text" name="token" placeholder="token" /><br />
         GET: <input type="radio" name="method" value="get" checked /> POST: <input type="radio" name="method"
             value="post" /><br />

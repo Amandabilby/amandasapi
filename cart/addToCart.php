@@ -5,45 +5,28 @@ include("../object/users.php");
 $cart_handler = new Cart($databaseHandler);
 $user_handler = new User($databaseHandler);
 
+$productid_IN = ( isset($_POST['Id']) ? $_POST['Id'] : '' );
+$token_IN = ( isset($_POST['token']) ? $_POST['token'] : '' );
 
 
 
-$token = isset($_POST['token']) ? $_POST['token'] : "";
-$productId = isset($_POST['Id']) ? $_POST['Id'] : "";
 
 
-
-// Init errors
-$error = false;
-$errorMessages = "";
-
-// Check for empty values
-if (empty($token)) {
-    $error = true;
-    $errorMessages = "token is empty! ";
-}
-
-if (empty($productId)) {
-    $error = true;
-    $errorMessages .= "Product Id is empty! ";
-}
-
-if ($error == true) {
-    echo $errorMessages;
-    die;
-}
+if(!empty($productid_IN)) {
+    if(!empty($token_IN)) {
 
 
+        $cart_handler->addToCart($productid_IN, $token_IN);
 
-if ($user_handler->validateToken($token) !== false) {
-    // Token is valid
-        echo $cart_handler->addToCart($userId, $productId);
-        return;
-    }  
+    } else {
+        echo "Error: content cannot be empty!";
+        }
+    } else {
+        echo "Token cant be empty";
+    }
 
+    $token = $_POST['token'];
 
-/*
 if($user_handler->validateToken($token) === false) {
     echo "Invalid token!";
-    die;
-}*/
+    die; }
