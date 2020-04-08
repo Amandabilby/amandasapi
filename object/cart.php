@@ -70,7 +70,13 @@ class Cart {
 
         public function fetchAllCarts() {
 
-            $query_string = "SELECT id, products_id, token FROM cart WHERE token=:token_IN";
+            $order = "desc";
+
+            if(isset($_GET['order']) && $_GET['order'] == "asc") {
+                $order ="asc";
+            }
+
+            $query_string = "SELECT id, products_id, token FROM cart WHERE token=:token_IN ORDER BY id $order";
             $statementHandler = $this->database_handler->prepare($query_string);
     
             if($statementHandler !== false) {

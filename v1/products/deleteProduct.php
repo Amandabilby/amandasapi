@@ -1,6 +1,6 @@
 <?php
-include('../object/products.php');
-include('../object/users.php');
+include('../../object/products.php');
+include('../../object/users.php');
 
 $post_handler = new Product($databaseHandler);
 $user_handler = new User($databaseHandler);
@@ -19,7 +19,7 @@ if(!empty($_POST['token'])) {
             die();
         }
 
-        $post_handler->updatePost($_POST);
+        $post_handler->deletePost($_POST);
 
 
     } else {

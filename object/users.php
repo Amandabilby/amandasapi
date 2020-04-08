@@ -2,7 +2,7 @@
 
 <?php
 
-    include("../config/database_handler.php");
+    include("../../config/database_handler.php");
 
     class User {
 
@@ -310,6 +310,68 @@
 
 
         return true;
+
+        
+
+    }
+    private function getUserId($token)
+    {
+        $query_string = "SELECT user_id FROM tokens WHERE token=:token";
+        $statementHandler = $this->database_handler->prepare($query_string);
+
+        if ($statementHandler !== false) {
+
+            $statementHandler->bindParam(":token", $token);
+            $statementHandler->execute();
+
+            $return = $statementHandler->fetch()[0];
+
+            if (!empty($return)) {
+                return $return;
+            } else {
+                return -1;
+            }
+        } else {
+            echo "Couldn't create a statementhandler!";
+        }
+    }
+
+
+
+    private function getUserData($userID) {
+
+        $query_string = "SELECT id, username, email, role FROM users WHERE id=:userID_IN";
+        $statementHandler = $this->database_handler->prepare($query_string);
+
+        if($statementHandler !== false) {
+
+            $statementHandler->bindParam(":userID_IN", $userID);
+            $statementHandler->execute();
+            
+            $return = $statementHandler->fetch();
+
+            if(!empty($return)) {
+                return $return;
+            } else {
+                return false;
+            }
+
+        } else {
+            echo "Couldn't create statement handler!";
+        }
+
+    }
+
+    public function isAdmin($token)
+    {
+        $user_id = $this->getUserId($token);
+        $user_data = $this->getUserData($user_id);
+
+        if($user_data['role'] == 'admin') {
+            return true;
+        } else {
+            return false;
+        }
 
     }
     

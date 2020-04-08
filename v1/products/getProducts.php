@@ -1,5 +1,5 @@
 <?php
-include("../object/products.php");
+include("../../object/products.php");
 $posts_object = new Product($databaseHandler);
 
 $postID = ( !empty($_GET['id'] ) ? $_GET['id'] : -1 );

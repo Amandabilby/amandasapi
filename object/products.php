@@ -1,6 +1,6 @@
 <?php
 
-include("../config/database_handler.php");
+include("../../config/database_handler.php");
 
 class Product {
     private $database_handler;
@@ -38,9 +38,17 @@ class Product {
         }
     }
 
+    
+
     public function fetchAllPosts() {
 
-        $query_string = "SELECT id, title, price, date_posted, user_id FROM products";
+        $order = "desc";
+
+    if(isset($_POST['order']) && $_POST['order'] == "asc") {
+        $order ="asc";
+    }
+
+        $query_string = "SELECT id, title, price, date_posted, user_id FROM products ORDER BY price $order";
         $statementHandler = $this->database_handler->prepare($query_string);
 
         if($statementHandler !== false) {
@@ -79,7 +87,29 @@ class Product {
         }
     }
 
+    public function deletePost($data) {
 
+
+        if(!empty($data['id'])) {
+            $query_string = "DELETE FROM products WHERE id=post_id";
+            $statementHandler = $this->database_handler->prepare($query_string);
+
+            $statementHandler->bindParam(":post_id", $data['id']);
+
+            $statementHandler->execute();
+            
+        }
+
+        $query_string = "SELECT id, title, price, date_posted, user_id FROM products WHERE id=:post_id";
+        $statementHandler = $this->database_handler->prepare($query_string);
+
+        $statementHandler->bindParam(":post_id", $data['id']);
+        $statementHandler->execute();
+
+        echo json_encode($statementHandler->fetch());
+
+
+    }
 
     public function updatePost($data) {
 
