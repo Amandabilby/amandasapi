@@ -17,7 +17,7 @@ Producthandler: Add new products, delete products, update products, list single 
 Carthandler: Add products to cart, remove products from cart, check out cart
 
 
-When you log in, a session (token) starts, which is valid for 20 minutes. Also when you register your user role is set to Null. To be admin you have to manually put in 1 in database. In my database Admin is set to role = admin already.
+When you log in, a session (token) starts, which is valid for 20 minutes. Also when you register your user role is set to Null. To be admin you have to manually put in 1 in database. In my database Admin is set to role = admin already. You have to be admin to add products etc. When you check out cart your cart status will be set to "checked out".
 
 
 <br><br>
