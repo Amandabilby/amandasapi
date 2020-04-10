@@ -1,26 +1,22 @@
-
-
 <?php
 
     include("../../config/database_handler.php");
 
     class User {
-
         private $database_handler;
         private $username;
         private $token_validity_time = 20; // minutes
 
 
-       
        public function __construct($database_handler_parameter_IN)
        {
            $this->database_handler = $database_handler_parameter_IN;
        }
 
-       public function addUser($username_IN, $password_IN, $email_IN) {
+       public function addUser($username_IN, $password_IN, $email_IN) { // Register new user
         $return_object = new stdClass();
 
-        if($this->isUsernameTaken($username_IN) === false) {
+        if($this->isUsernameTaken($username_IN) === false) { 
             if($this->isEmailTaken($email_IN) === false) {
 
                 
@@ -33,19 +29,19 @@
                 }  else {
 
                     $return_object->state = "ERROR";
-                    $return_object->message = "Something went wrong when trying to INSERT user";
+                    $return_object->message = "Something went wrong when trying to insert user";
 
                 }
 
 
             } else {
                 $return_object->state = "ERROR";
-                $return_object->message = "Email is taken";
+                $return_object->message = "Email is taken"; // Create error if email is taken
             }
 
         } else {
             $return_object->state = "ERROR";
-            $return_object->message = "Username is taken";
+            $return_object->message = "Username is taken"; // Create error if username is taken
         }
             
 
@@ -59,7 +55,7 @@
 
             if($statementHandler !== false ){
 
-                $encrypted_password = md5($password_param);
+                $encrypted_password = md5($password_param); // Crypts password with md5
 
                 $statementHandler->bindParam(':username', $username_param);
                 $statementHandler->bindParam(':password', $encrypted_password);
@@ -83,12 +79,10 @@
             } else {
                 return false;
             }
-
-
        }
 
 
-       private function isUsernameTaken( $username_param ) {
+       private function isUsernameTaken( $username_param ) { // functions that is being used in addUser function to check if username is taken
 
             $query_string = "SELECT COUNT(id) FROM users WHERE username=:username";
             $statementHandler = $this->database_handler->prepare($query_string);
@@ -116,7 +110,7 @@
 
         
         
-        private function isEmailTaken( $email_param ) {
+        private function isEmailTaken( $email_param ) { // function being used in addUser to check if email is taken
             $query_string = "SELECT COUNT(id) FROM users WHERE email=:email";
             $statementHandler = $this->database_handler->prepare($query_string);
 
@@ -133,16 +127,14 @@
                     return false;
                 }
 
-
             } else {
-                echo "Statementhandler epic fail!";
+                echo "Statementhandler failed";
                 die;
             }
         }
 
 
-
-        public function loginUser($username_parameter, $password_parameter) {
+        public function loginUser($username_parameter, $password_parameter) { // Loginfunction
             $return_object = new stdClass();
 
             $query_string = "SELECT id, username, email FROM users WHERE username=:username_IN AND password=:password_IN";
@@ -155,8 +147,6 @@
                 $statementHandler->bindParam(':username_IN', $username_parameter);
                 $statementHandler->bindParam(':password_IN', $password);
 
-                
-
                 $statementHandler->execute();
                 $return = $statementHandler->fetch();
 
@@ -167,10 +157,8 @@
                     $return_object->token = $this->getToken($return['id'], $return['username']);
                     return json_encode($return_object);
                 } else {
-                    echo "fel login";
+                    echo "Login failed"; // If login failed
                 }
-
-                
 
             } else {
                 echo "Could not create a statementhandler";
@@ -183,7 +171,7 @@
 
             $token = $this->checkToken($userID);
 
-            return $token;
+            return $token; // Return token when login
 
         }
 
@@ -201,7 +189,7 @@
 
                     
                     if(!empty($return['token'])) {
-                        // token finns
+                        // token exist
 
                         $token_timestamp = $return['date_updated'];
                         $diff = time() - $token_timestamp;
@@ -247,7 +235,6 @@
                 $statementHandler->bindParam(":current_time", $currentTime, PDO::PARAM_INT);
 
                 $statementHandler->execute();
-              //  $statementHandler->debugDumpParams();
 
                 return $uniqToken;
 
@@ -314,6 +301,7 @@
         
 
     }
+
     private function getUserId($token)
     {
         $query_string = "SELECT user_id FROM tokens WHERE token=:token";
@@ -338,7 +326,7 @@
 
 
 
-    private function getUserData($userID) {
+    private function getUserData($userID) { // get userdata to check admin later
 
         $query_string = "SELECT id, username, email, role FROM users WHERE id=:userID_IN";
         $statementHandler = $this->database_handler->prepare($query_string);
@@ -362,12 +350,12 @@
 
     }
 
-    public function isAdmin($token)
+    public function isAdmin($token) // function to check if user is admin ('1' in database, null is user)
     {
         $user_id = $this->getUserId($token);
         $user_data = $this->getUserData($user_id);
 
-        if($user_data['role'] == 'admin') {
+        if($user_data['role'] == '1') {
             return true;
         } else {
             return false;

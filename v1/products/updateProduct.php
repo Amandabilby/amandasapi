@@ -2,8 +2,12 @@
 include('../../object/products.php');
 include('../../object/users.php');
 
+// Create handlers.
 $post_handler = new Product($databaseHandler);
 $user_handler = new User($databaseHandler);
+
+
+// If no fields are empty and token is valid, update products in DB.
 
 if(!empty($_POST['token'])) {
 
