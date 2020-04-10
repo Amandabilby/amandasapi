@@ -10,7 +10,7 @@ The API is made with PHP and SQL. There is an database dump included with testda
 V2 or more in future if updates are coming.
 <br><br>
 
-What you can do with the API:
+<h4>What you can do with the API:</h4>
 
 Userhandler: Create new users, log in as user (admin or user)
 Producthandler: Add new products, delete products, update products, list single or all products
@@ -22,14 +22,14 @@ When you log in, a session (token) starts, which is valid for 20 minutes.
 
 <br><br>
 
-Coding style
+<h4>Coding style</h4>
 
 All functions and names are in camelcase (addToCart, fetchAllCarts etc). Classnames are singular standard ("User, Product, Cart").
 
 <br><br>
 
 
-Testdata:
+<h4>Testdata:</h4>
 
 Username: Admin
 Password: helloadmin
@@ -43,7 +43,7 @@ Email: hellouser@php.com
 
 
 
-Endpoints in V1
+<H4>Endpoints in V1</h4>
 <br>
 
 
