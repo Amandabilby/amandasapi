@@ -3,7 +3,7 @@
 For Systemutveckling PHP, Medieinstitutet 10/4-2020
 <br><br>
 
-CREATING API FOR E-COMMERCE
+<h2>CREATING API FOR E-COMMERCE</h2>
 <br><br>
 
 The API is made with PHP and SQL. There is an database dump included with testdata. There is a V1 with endpoints, to be able to make 
