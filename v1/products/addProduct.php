@@ -23,7 +23,7 @@ if($user_handler->validateToken($token) === false) {
 $isAdmin = $user_handler->isAdmin($token); // Check if user is admin.
 
 if($isAdmin === false) {
-    echo "You are not admin"; // If user is not admin, messade that you can't add to card. 
+    echo "You are not admin"; // If user is not admin, message that you can't add to card. 
     die;
 }
 
