@@ -3,7 +3,8 @@
 For Systemutveckling PHP, Medieinstitutet 10/4-2020
 <br><br>
 
-CREATING API FOR E-COMMERCE<br><br>
+CREATING API FOR E-COMMERCE
+<br><br>
 
 The API is made with PHP and SQL. There is an database dump included with testdata. There is a V1 with endpoints, to be able to make 
 V2 or more in future if updates are coming.
@@ -19,11 +20,13 @@ Carthandler: Add products to cart, remove products from cart, check out cart
 When you log in, a session (token) starts, which is valid for 20 minutes.
 
 
+<br><br>
 
 Coding style
 
 All functions and names are in camelcase (addToCart, fetchAllCarts etc). Classnames are singular standard ("User, Product, Cart").
 
+<br><br>
 
 
 Testdata:
@@ -36,10 +39,12 @@ Username: User
 Password: hellouser
 Email: hellouser@php.com
 
+<br><br>
 
 
 
 Endpoints in V1
+<br>
 
 
 Users:
@@ -50,6 +55,7 @@ Inserts user to database if username & e-mail is not taken and no fields are emp
 userLogin.php
 If no field is empty and user exists in database, you will be logged in.
 
+<br><br>
 
 Products:
 
@@ -68,6 +74,7 @@ Show single product if product_id is typed in.
 updateProduct.php
 If token is valid, update product in database.
 
+<br><br>
 
 
 Cart
