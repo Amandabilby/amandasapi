@@ -31,12 +31,12 @@ All functions and names are in camelcase (addToCart, fetchAllCarts etc). Classna
 
 <h4>Testdata:</h4>
 
-Username: Admin
-Password: helloadmin
-Email: helloadmin@php.com
+Username: Admin<br>
+Password: helloadmin<br>
+Email: helloadmin@php.com<br>
 
-Username: User
-Password: hellouser
+Username: User<br>
+Password: hellouser<br>
 Email: hellouser@php.com
 
 <br><br>
