@@ -49,29 +49,29 @@ Email: hellouser@php.com
 
 Users:
 
-addUser.php
+addUser.php<br>
 Inserts user to database if username & e-mail is not taken and no fields are empty.
 
-userLogin.php
+userLogin.php<br>
 If no field is empty and user exists in database, you will be logged in.
 
 <br><br>
 
 Products:
 
-addProduct.php
+addProduct.php<br>
 If user is admin, token is valid, no fields are empty - product will be added to database.
 
-deleteProduct.php
+deleteProduct.php<br>
 Deletes from DB if token and id is not empty.
 
-getAllProducts.php
+getAllProducts.php<br>
 Show all products if token is valid.
 
-getProducts.php
+getProducts.php<br>
 Show single product if product_id is typed in.
 
-updateProduct.php
+updateProduct.php<br>
 If token is valid, update product in database.
 
 <br><br>
@@ -79,16 +79,16 @@ If token is valid, update product in database.
 
 Cart
 
-addToCart.php
+addToCart.php<br>
 Add product to cart and DB if no fields are empty and token is vaildated.
 
-checkOutCart.php
+checkOutCart.php<br>
 Checking out cart, change status in DB to 'checked out' if token is valid.
 
-deleteFromCart.php
+deleteFromCart.php<br>
 Remove product from DB in cart where token is.
 
-getAllCarts.php
+getAllCarts.php<br>
 Gets all products in cart where the token is set.
 
 
