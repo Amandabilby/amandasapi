@@ -1,13 +1,13 @@
 # amandasapi
 
 For Systemutveckling PHP, Medieinstitutet 10/4-2020
+<br><br>
 
-
-CREATING API FOR E-COMMERCE
+CREATING API FOR E-COMMERCE<br><br>
 
 The API is made with PHP and SQL. There is an database dump included with testdata. There is a V1 with endpoints, to be able to make 
 V2 or more in future if updates are coming.
-
+<br><br>
 
 What you can do with the API:
 
